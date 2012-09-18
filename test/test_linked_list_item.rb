@@ -8,6 +8,11 @@ class LinkedListItemTest < Test::Unit::TestCase
     assert_equal("foo", lli.payload)
   end
 
+  def test_01b_item_stores_payload
+    lli = LinkedListItem.new("grille")
+    assert_equal("grille", lli.payload)
+  end
+
   def test_02_add_next_list_item
     lli1 = LinkedListItem.new("foo")
     lli2 = LinkedListItem.new("bar")
@@ -20,6 +25,7 @@ class LinkedListItemTest < Test::Unit::TestCase
     assert_raise ArgumentError do
       lli1.next_list_item = lli1
     end
+    assert !(lli1.next_list_item == lli1)
   end
 
   def test_04_last_is_true_if_item_is_last
