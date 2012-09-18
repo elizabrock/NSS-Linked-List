@@ -33,9 +33,30 @@ class LinkedList
   end
 
   def last
+    if size == 0
+      return nil
+    end
+    last_item = @first_item # last_item = nil
+    until last_item.last?
+      last_item = last_item.next_list_item
+    end
+    last_item.payload
   end
 
   def to_s
+    if size == 0
+      "| |"
+    else
+      items = []
+      item = @first_item
+      while item
+        items << item.payload
+        item = item.next_list_item
+      end
+      output = "| "
+      output += items.join(", ")
+      output += " |"
+    end
   end
 
   # ========= Bonus ========== #
