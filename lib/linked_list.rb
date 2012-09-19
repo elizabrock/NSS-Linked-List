@@ -4,8 +4,11 @@ class LinkedList
   attr_reader :first_item
   attr_reader :size
 
-  def initialize *args
+  def initialize *payloads
     @size = 0
+    payloads.each do |payload|
+      add_item( payload )
+    end
   end
 
   def add_item(payload)
@@ -47,14 +50,15 @@ class LinkedList
     if size == 0
       "| |"
     else
-      items = []
+      output = "| "
       item = @first_item
       while item
-        items << item.payload
+        output += item.payload
+        if !item.last?
+          output += ", "
+        end
         item = item.next_list_item
       end
-      output = "| "
-      output += items.join(", ")
       output += " |"
     end
   end
