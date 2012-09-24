@@ -183,4 +183,56 @@ class LinkedListTest < Test::Unit::TestCase
     end
   end
 
+  # ========= Index exercise ========== #
+
+  def test_26_index_of_first_item
+    ll = LinkedList.new()
+    ll.add_item("foo")
+    ll.add_item("bar")
+    ll.add_item("good")
+    assert_equal(0, ll.index("foo"))
+  end
+
+  def test_27_index_of_middle_item
+    ll = LinkedList.new()
+    ll.add_item("foo")
+    ll.add_item("bar")
+    ll.add_item("good")
+    assert_equal(1, ll.index("bar"))
+  end
+
+  def test_28_index_of_last_item
+    ll = LinkedList.new()
+    ll.add_item("foo")
+    ll.add_item("bar")
+    ll.add_item("good")
+    assert_equal(2, ll.index("good"))
+  end
+
+  def test_29_index_of_last_item
+    ll = LinkedList.new()
+    ll.add_item("foo")
+    ll.add_item("bar")
+    ll.add_item("good")
+    assert_equal(nil, ll.index("terrible"))
+  end
+
+  def test_30_index_of_last_item
+    ll = LinkedList.new()
+    assert_equal(nil, ll.index("terrible"))
+  end
+
+  def test_31_index_of_duplicate
+    ll = LinkedList.new()
+    ll.add_item("foo")
+    ll.add_item("foo")
+    ll.add_item("good")
+    assert_equal(0, ll.index("foo"))
+  end
+
+  def test_32_index_of_empty_list
+    ll = LinkedList.new()
+    assert_equal(nil, ll.index("foo"))
+  end
+
 end

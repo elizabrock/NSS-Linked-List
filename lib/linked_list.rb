@@ -87,4 +87,17 @@ class LinkedList
     @size -= 1
   end
 
+  # ========= Index Exercise ========== #
+
+  def index(payload)
+    item = @first_item
+    i = 0
+    while item
+      if item.payload == payload
+        return i
+      end
+      item = item.next_list_item
+      i += 1
+    end
+  end
 end
