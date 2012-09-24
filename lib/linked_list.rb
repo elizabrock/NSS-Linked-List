@@ -58,7 +58,7 @@ class LinkedList
       output = "| "
       item = @first_item
       while item
-        output += item.payload
+        output += item.payload.to_s
         if !item.last?
           output += ", "
         end
@@ -98,6 +98,47 @@ class LinkedList
       end
       item = item.next_list_item
       i += 1
+    end
+  end
+
+  # ========= Sorting Exercise ========== #
+
+  def sorted?
+    item = @first_item
+    return true unless item
+    while item
+      return true if item.last?
+      return false if item > item.next_list_item
+      item = item.next_list_item
+    end
+  end
+
+  def sort!
+    # bubble sort
+    return unless @size > 1
+    item = @first_item
+    i = 0
+    while item && !item.last?
+      if item > item.next_list_item
+        swap_with_next i
+      end
+      i +=1
+      item = item.next_list_item
+    end
+    # # recursion, ftw
+    sort! unless sorted?
+  end
+
+  def swap_with_next i
+    item = get_item(i)
+    next_item = get_item( i + 1)
+    item.next_list_item = next_item.next_list_item
+    next_item.next_list_item = item
+    if i == 0
+      @first_item = next_item
+    else
+      prev_item = get_item( i - 1)
+      prev_item.next_list_item = next_item
     end
   end
 end
