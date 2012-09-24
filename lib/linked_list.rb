@@ -24,7 +24,7 @@ class LinkedList
     end
   end
 
-  def get(n)
+  def get_item(n)
     i = 0
     item = @first_item
     while i < n
@@ -32,8 +32,13 @@ class LinkedList
       item = item.next_list_item
       i += 1
     end
-    item.payload
+    item
   end
+
+  def get(n)
+    get_item(n).payload
+  end
+  alias [] get
 
   def last
     if size == 0
@@ -64,14 +69,22 @@ class LinkedList
   end
 
   # ========= Bonus ========== #
-
-  def [](payload)
-  end
-
   def []=(n, payload)
+    get_item(n).payload = payload
   end
 
-  def remove(n)
+ def remove(n)
+    if n >= size
+      raise IndexError, "cannot remove node at position #{n}, as it does not exist"
+    end
+    if n == 0
+      @first_item = @first_item.next_list_item
+    else
+      before = get_item(n-1)
+      node = get_item(n)
+      before.next_list_item = node.next_list_item
+    end
+    @size -= 1
   end
 
 end

@@ -3,15 +3,16 @@ require 'linked_list'
 
 class LinkedListTest < Test::Unit::TestCase
 
+
   def test_06_add_item_get_item
-    ll = LinkedList.new
-    ll.add_item("foo")
+    ll = LinkedList.new # [ nil ]
+    ll.add_item("foo") # [nil, foo ]
     assert_equal("foo", ll.get(0))
   end
 
   def test_06b_add_item_get_item
-    ll = LinkedList.new
-    ll.add_item("bar")
+    ll = LinkedList.new # [ foo ]
+    ll.add_item("bar") # [ foo, bar ]
     assert_equal("bar", ll.get(0))
   end
 
@@ -91,6 +92,11 @@ class LinkedListTest < Test::Unit::TestCase
   def test_17_initialize_takes_seed_arguments
     ll = LinkedList.new("foo", "bar", "grille")
     assert_equal '| foo, bar, grille |', ll.to_s
+  end
+
+  def test_18b_get_item
+    ll = LinkedList.new("foo", "bar", "grille")
+    assert_equal("grille", ll.get_item(2).payload)
   end
 
   def test_18_bracket_accessor
