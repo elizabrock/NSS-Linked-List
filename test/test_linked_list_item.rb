@@ -1,4 +1,4 @@
-require 'test/unit'
+require File.expand_path("../test_helper", __FILE__)
 require 'linked_list_item'
 
 class LinkedListItemTest < Test::Unit::TestCase
